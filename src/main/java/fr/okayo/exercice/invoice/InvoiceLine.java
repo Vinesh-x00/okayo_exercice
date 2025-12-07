@@ -19,6 +19,7 @@ public class InvoiceLine {
     @Id
     @Column(name = "id_detail")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
     @Column(name = "designation_produit", nullable = false, length = 100)
