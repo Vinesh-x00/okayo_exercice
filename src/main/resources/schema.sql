@@ -1,10 +1,17 @@
+DROP TABLE IF EXISTS Categorie_TVA CASCADE;
+DROP TABLE IF EXISTS Taux_Tva CASCADE;
+DROP TABLE IF EXISTS Client CASCADE;
+DROP TABLE IF EXISTS Produit CASCADE;
+DROP TABLE IF EXISTS Facture CASCADE;
+DROP TABLE IF EXISTS Detail_Facture CASCADE;
+
 CREATE TABLE IF NOT EXISTS Categorie_TVA (
     code_categorie VARCHAR(50) PRIMARY KEY,
     description TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Taux_Tva (
-    id_tva VARCHAR(36) PRIMARY KEY, -- UUID
+    id_tva UUID PRIMARY KEY, -- UUID
     code_categorie VARCHAR(50) NOT NULL,
     taux NUMERIC(5, 4) NOT NULL,
     date_debut DATE NOT NULL,
@@ -23,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Client (
 );
 
 CREATE TABLE IF NOT EXISTS Produit (
-    id_produit VARCHAR(36) PRIMARY KEY, -- UUID
+    id_produit UUID PRIMARY KEY, -- UUID
     designation VARCHAR(100) NOT NULL,
     prix_ht NUMERIC(10, 2) NOT NULL,
     code_categorie_tva VARCHAR(50) NOT NULL,
@@ -44,11 +51,11 @@ CREATE TABLE IF NOT EXISTS Facture (
     FOREIGN KEY (id_client) REFERENCES Client(id_client)
 );
 
-CREATE TABLE IF NOT EXISTS Ligne_Facture (
+CREATE TABLE IF NOT EXISTS Detail_Facture (
     id_detail SERIAL PRIMARY KEY,
     id_facture INTEGER NOT NULL,
-    id_produit VARCHAR(36),
-    id_tva VARCHAR(36) NOT NULL,
+    id_produit UUID,
+    id_tva UUID NOT NULL,
 
     designation_produit VARCHAR(100) NOT NULL,
     prix_unitaire NUMERIC(10, 2) NOT NULL,

@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "lines") // CRITIQUE : Empêche la boucle infinie avec InvoiceLine
+@ToString(exclude = {"lines", "customer"})
 public class Invoice {
 
     @Id
@@ -42,7 +42,6 @@ public class Invoice {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_client", nullable = false)
-    @ToString.Exclude // Exclure pour éviter de charger le client inutilement lors d'un log
     private Customer customer;
 
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
