@@ -17,6 +17,7 @@ public class ProductService {
     private final @NotNull ProductRepository productRepository;
     private final @NotNull VatCategoryRepository vatCategoryRepository;
 
+    @Transactional
     public Product finById(UUID id) {
         Objects.requireNonNull(id);
         return productRepository
