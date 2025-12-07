@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Service class represent VAT.
+ */
 @Service
 public class VatRateService {
     private final VatRateRepository vatRateRepository;
@@ -20,6 +23,11 @@ public class VatRateService {
         vatCategoryRepository = Objects.requireNonNull(cateRepo, "vatCategoryRepository is null");
     }
 
+    /**
+     * Find active VAT by category.
+     * @param categoryCode category code.
+     * @return active VAT.
+     */
     @Transactional
     public VatRate findActiveVAT(String categoryCode) {
         Objects.requireNonNull(categoryCode, "categoryCode is null");
@@ -27,6 +35,11 @@ public class VatRateService {
                 .orElseThrow(() -> new ResourceNotFoundException("Catégorie TVA introuvable"));
     }
 
+    /**
+     * find VAT by uuid.
+     * @param id uuid of vat.
+     * @return VAT associate with that uuid.
+     */
     @Transactional
     public VatRate findById(UUID id) {
         Objects.requireNonNull(id, "uuid is null");
@@ -34,6 +47,11 @@ public class VatRateService {
                 .orElseThrow(() -> new ResourceNotFoundException("TVA introuvable ID: " + id.toString()));
     }
 
+    /**
+     * create new VAT, it will end the previous active VAT with give category.
+     * @param dto VAT DTO.
+     * @return created VAT entity.
+     */
     @Transactional
     public VatRate createVAT(VatDTO dto) {
         VatRate rate = new VatRate();
@@ -43,7 +61,7 @@ public class VatRateService {
         dto.endDate().ifPresent(rate::setEndDate);
 
         var activeVAT = vatRateRepository
-                .findActiveRate(dto.categorie(), LocalDate.now())
+                .findActiveRate(dto.category(), LocalDate.now())
                 .orElseThrow(() -> new BadRequest("Catégorie tva non trouvé"));
 
         activeVAT.setEndDate(LocalDate.now());
@@ -53,6 +71,10 @@ public class VatRateService {
         return vatRateRepository.save(rate);
     }
 
+    /**
+     * List all VAT Categories
+     * @return list of Category.
+     */
     public List<VatCategory> getAllVatCategories() {
         return vatCategoryRepository.findAll();
     }

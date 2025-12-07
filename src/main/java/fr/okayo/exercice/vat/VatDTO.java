@@ -10,13 +10,13 @@ import java.util.Objects;
 import java.util.Optional;
 
 public record VatDTO(
-        String categorie,
+        String category,
         BigDecimal rate,
         LocalDate startDate,
         Optional<LocalDate> endDate) {
 
     public VatDTO {
-        Objects.requireNonNull(categorie);
+        Objects.requireNonNull(category);
         Objects.requireNonNull(rate);
         Objects.requireNonNull(startDate);
         Objects.requireNonNull(endDate);
