@@ -75,6 +75,7 @@ public class VatRateService {
      * List all VAT Categories
      * @return list of Category.
      */
+    @Transactional
     public List<VatCategory> getAllVatCategories() {
         return vatCategoryRepository.findAll();
     }
