@@ -1,7 +1,7 @@
 package fr.okayo.exercice.product;
 
 import fr.okayo.exercice.exceptions.BadRequest;
-import fr.okayo.exercice.exceptions.ResourceNotFoundException;
+import fr.okayo.exercice.exceptions.ResourceNotFound;
 import fr.okayo.exercice.vat.VatCategoryRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ public class ProductService {
         Objects.requireNonNull(id);
         return productRepository
                 .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("produit non trouvé"));
+                .orElseThrow(() -> new ResourceNotFound("produit non trouvé"));
     }
 
     @Transactional

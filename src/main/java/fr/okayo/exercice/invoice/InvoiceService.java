@@ -2,7 +2,7 @@ package fr.okayo.exercice.invoice;
 
 import fr.okayo.exercice.customer.CustomerRepository;
 import fr.okayo.exercice.exceptions.BadRequest;
-import fr.okayo.exercice.exceptions.ResourceNotFoundException;
+import fr.okayo.exercice.exceptions.ResourceNotFound;
 import fr.okayo.exercice.product.ProductRepository;
 import fr.okayo.exercice.vat.VatRateRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class InvoiceService {
     public Invoice findByReference(String reference) {
         Objects.requireNonNull(reference, "reference is null");
         var res = invoiceRepository.findByReference(reference);
-        return res.orElseThrow(() -> new ResourceNotFoundException("facture non trouvé"));
+        return res.orElseThrow(() -> new ResourceNotFound("facture non trouvé"));
     }
 
     /**
@@ -86,7 +86,7 @@ public class InvoiceService {
         var invoice = new Invoice();
 
         var customer = customerRepository.findByCustomerCode(dto.customer())
-                .orElseThrow(() -> new ResourceNotFoundException("Client introuvable"));
+                .orElseThrow(() -> new ResourceNotFound("Client introuvable"));
 
         invoice.setCustomer(customer);
         invoice.setIssueDate(dto.issueDate());
@@ -102,7 +102,7 @@ public class InvoiceService {
         for(var lineDto : dto.lines()) {
             var product = productRepository
                     .findById(lineDto.productId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Produit introuvable"));
+                    .orElseThrow(() -> new ResourceNotFound("Produit introuvable"));
 
             var rate = vatRateRepository
                     .findActiveRate(product.getVatCategory().getCode(), LocalDate.now())

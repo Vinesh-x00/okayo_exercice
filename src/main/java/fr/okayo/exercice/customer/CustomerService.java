@@ -1,6 +1,6 @@
 package fr.okayo.exercice.customer;
 
-import fr.okayo.exercice.exceptions.ResourceNotFoundException;
+import fr.okayo.exercice.exceptions.ResourceNotFound;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class CustomerService {
         Objects.requireNonNull(customerCode);
         return customerRepository
                 .findByCustomerCode(customerCode)
-                .orElseThrow(() -> new ResourceNotFoundException("client non trouvé"));
+                .orElseThrow(() -> new ResourceNotFound("client non trouvé"));
     }
 
     /**

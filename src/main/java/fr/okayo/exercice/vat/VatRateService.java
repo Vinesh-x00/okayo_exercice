@@ -1,7 +1,7 @@
 package fr.okayo.exercice.vat;
 
 import fr.okayo.exercice.exceptions.BadRequest;
-import fr.okayo.exercice.exceptions.ResourceNotFoundException;
+import fr.okayo.exercice.exceptions.ResourceNotFound;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +32,7 @@ public class VatRateService {
     public VatRate findActiveVAT(String categoryCode) {
         Objects.requireNonNull(categoryCode, "categoryCode is null");
         return vatRateRepository.findActiveRate(categoryCode, LocalDate.now())
-                .orElseThrow(() -> new ResourceNotFoundException("Catégorie TVA introuvable"));
+                .orElseThrow(() -> new ResourceNotFound("Catégorie TVA introuvable"));
     }
 
     /**
@@ -44,7 +44,7 @@ public class VatRateService {
     public VatRate findById(UUID id) {
         Objects.requireNonNull(id, "uuid is null");
         return vatRateRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("TVA introuvable ID: " + id.toString()));
+                .orElseThrow(() -> new ResourceNotFound("TVA introuvable ID: " + id.toString()));
     }
 
     /**
