@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public class ProductService {
     private final @NotNull VatCategoryRepository vatCategoryRepository;
 
     @Transactional
-    public Product finById(UUID id) {
+    public Product findById(UUID id) {
         Objects.requireNonNull(id);
         return productRepository
                 .findById(id)
@@ -36,6 +37,10 @@ public class ProductService {
         product.setPriceExclTax(dto.priceExclTax());
         product.setVatCategory(category);
         return product;
+    }
+    @Transactional
+    public List<Product> getAll() {
+        return productRepository.findAll();
     }
 
 

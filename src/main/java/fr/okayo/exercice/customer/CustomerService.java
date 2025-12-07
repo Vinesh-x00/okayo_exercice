@@ -4,6 +4,7 @@ import fr.okayo.exercice.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -36,5 +37,9 @@ public class CustomerService {
         customer.setAddress(dto.address());
         customer.setZipCode(dto.zipCode());
         return customer;
+    }
+
+    public List<Customer> getAll() {
+        return customerRepository.findAll();
     }
 }

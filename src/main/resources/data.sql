@@ -18,7 +18,7 @@ INSERT INTO Client (id_client, code_client, nom, adresse, code_postal, ville) VA
 (1, 'CU2203-0005', 'Mon client SAS', '45, rue du test', '75016', 'PARIS');
 
 INSERT INTO Facture (id_facture, reference_facture, id_client, date_emission, date_echeance, statut, total_ht, total_ttc_globale) VALUES
-(1, 2022-0025, 1, '2018-07-26', '2018-07-31', 'PAYEE', 84000.00, 99325.00);
+(1, '2022-0025', 1, '2018-07-26', '2018-07-31', 'PAYEE', 84000.00, 99325.00);
 
 INSERT INTO Detail_Facture(id_facture, id_produit, id_tva, designation_produit, prix_unitaire, quantite) VALUES
 (1, '019af8e7-44c8-7f70-aa40-2c1106a95e32', '019af8e5-93ef-7fa0-ad1c-0beff9ea2cd2', 'Mon produit C', 70000.00, 1),

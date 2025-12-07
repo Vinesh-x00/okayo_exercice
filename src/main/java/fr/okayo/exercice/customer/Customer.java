@@ -1,5 +1,6 @@
 package fr.okayo.exercice.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -17,6 +18,7 @@ public class Customer {
     @Column(name = "id_client")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
+    @JsonIgnore
     private Integer id;
 
     @Column(name = "code_client", length = 100, unique = true)
