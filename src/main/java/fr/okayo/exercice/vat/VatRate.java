@@ -20,7 +20,6 @@ public class VatRate {
     @Id
     @Column(name = "id_tva", length = 36)
     @GeneratedValue(strategy = GenerationType.UUID)
-    @NotNull
     private UUID id;
 
     @Column(name = "taux", nullable = false, precision = 5, scale = 4)
