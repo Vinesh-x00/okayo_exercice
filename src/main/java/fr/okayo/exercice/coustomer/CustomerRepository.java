@@ -2,9 +2,14 @@ package fr.okayo.exercice.coustomer;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Repository represents the customer.
+ */
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     /**

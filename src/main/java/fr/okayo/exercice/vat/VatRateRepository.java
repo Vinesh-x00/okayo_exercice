@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository represents the VAT.
+ */
 @Repository
 public interface VatRateRepository extends JpaRepository<VatRate, UUID> {
 
