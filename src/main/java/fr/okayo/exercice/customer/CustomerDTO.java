@@ -1,4 +1,4 @@
-package fr.okayo.exercice.coustomer;
+package fr.okayo.exercice.customer;
 
 import java.util.Objects;
 

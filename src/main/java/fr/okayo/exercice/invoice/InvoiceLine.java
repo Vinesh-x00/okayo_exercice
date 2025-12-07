@@ -1,5 +1,6 @@
 package fr.okayo.exercice.invoice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.okayo.exercice.product.Product;
 import fr.okayo.exercice.vat.VatRate;
 import jakarta.persistence.*;
@@ -31,6 +32,7 @@ public class InvoiceLine {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_facture", nullable = false)
+    @JsonIgnore
     private Invoice invoice;
 
     @ManyToOne(fetch = FetchType.LAZY)

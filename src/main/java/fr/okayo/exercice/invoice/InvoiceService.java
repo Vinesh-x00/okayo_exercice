@@ -1,7 +1,6 @@
 package fr.okayo.exercice.invoice;
 
-import fr.okayo.exercice.coustomer.Customer;
-import fr.okayo.exercice.coustomer.CustomerRepository;
+import fr.okayo.exercice.customer.CustomerRepository;
 import fr.okayo.exercice.exceptions.BadRequest;
 import fr.okayo.exercice.exceptions.ResourceNotFoundException;
 import fr.okayo.exercice.product.ProductRepository;
@@ -16,7 +15,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class InvoiceService {
-    private final InvoiceLineRepository lineRepositoryepository;
     private final InvoiceRepository invoiceRepository;
     private final CustomerRepository customerRepository;
     private final VatRateRepository vatRateRepository;
@@ -41,7 +39,7 @@ public class InvoiceService {
      */
     public List<Invoice> findByCustomerCode(String customerCode) {
         Objects.requireNonNull(customerCode,"CustomerCode is null");
-        return invoiceRepository.findByCustomer_CustomerCodeCode(customerCode);
+        return invoiceRepository.findByCustomer_CustomerCode(customerCode);
     }
 
     /**
@@ -64,6 +62,14 @@ public class InvoiceService {
         Objects.requireNonNull(CustomerCode);
         Objects.requireNonNull(status);
         return invoiceRepository.findByCustomer_CustomerCodeAndStatus(CustomerCode, status);
+    }
+
+    /**
+     * get all invoices
+     * @return list of invoices.
+     */
+    public List<Invoice> getAll() {
+        return invoiceRepository.findAll();
     }
 
     /**

@@ -1,4 +1,4 @@
-package fr.okayo.exercice.coustomer;
+package fr.okayo.exercice.customer;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

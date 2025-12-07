@@ -1,6 +1,7 @@
 package fr.okayo.exercice.invoice;
 
-import fr.okayo.exercice.coustomer.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.okayo.exercice.customer.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ public class Invoice {
     @Id
     @Column(name = "id_facture")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
     @Column(name = "reference_facture", nullable = false, unique = true, length = 100)
@@ -43,6 +45,7 @@ public class Invoice {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_client", nullable = false)
     private Customer customer;
+
 
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<InvoiceLine> lines;

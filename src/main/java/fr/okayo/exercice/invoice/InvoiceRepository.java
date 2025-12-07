@@ -18,7 +18,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
      * @param customerCode code of the Customer.
      * @return List of invoices belong to that customer.
      */
-    List<Invoice> findByCustomer_CustomerCodeCode(@NotNull String customerCode);
+    List<Invoice> findByCustomer_CustomerCode(@NotNull String customerCode);
 
     /**
      * Find invoice by status
