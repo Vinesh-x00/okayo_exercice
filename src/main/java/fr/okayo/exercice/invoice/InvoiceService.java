@@ -24,7 +24,7 @@ public class InvoiceService {
     /**
      * find invoice by reference
      * @param reference invoice reference
-     * @return invoice
+     * @return invoice with give reference
      */
     public Invoice findByReference(String reference) {
         Objects.requireNonNull(reference, "reference is null");
@@ -116,10 +116,8 @@ public class InvoiceService {
             line.setAppliedVatRate(rate);
             line.setQuantity(lineDto.quantity());
 
-            // Montant HT Ligne = Prix Unitaire * Quantité
             var lineTotalHt = product.getPriceExclTax().multiply(BigDecimal.valueOf(lineDto.quantity()));
 
-            // Montant TVA Ligne = Montant HT * Taux
             var lineVatAmount = lineTotalHt.multiply(rate.getRate());
 
             var lineTotalTtc = lineTotalHt.add(lineVatAmount);
